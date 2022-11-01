@@ -8,8 +8,8 @@ export default function Bar() {
             <Box mb={4}>
                 <AppBar position="static">
                     <Toolbar>
-                        <Box>
-                            <ChatIcon />
+                        <Box mr={2}>
+                            <ChatIcon fontSize={'large'}/>
                         </Box>
                         <Typography variant="h6">
                             React - Websocket Chat Application
