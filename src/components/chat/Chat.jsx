@@ -44,17 +44,17 @@ export default function Chat(){
                                     {listChatMessages}
                                 </List>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={2}>
                                 <FormControl fullWidth>
                                     <TextField value={user} label="Username" variant="standard"/>
                                 </FormControl>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={9}>
                                 <FormControl fullWidth>
                                     <TextField value={message} label="Here comes your message: " variant="standard"/>
                                 </FormControl>
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={1}>
                                 <IconButton
                                     aria-label="send"
                                     color="primary">
