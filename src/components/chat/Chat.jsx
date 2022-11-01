@@ -25,8 +25,14 @@ export default function Chat(){
             <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`} />
         </ListItem>
     );
-    const [user, SetUser] = useState("");
+    const [user, setUser] = useState("");
     const [message, setMessage] = useState("");
+    const handleUserChange = (e) => {
+        setUser(e.target.value);
+    }
+    const handleMessageChange = (e) => {
+        setMessage(e.target.value);
+    }
 
     return (
         <Fragment>
@@ -46,12 +52,21 @@ export default function Chat(){
                             </Grid>
                             <Grid item xs={2}>
                                 <FormControl fullWidth>
-                                    <TextField value={user} label="Username" variant="standard"/>
+                                    <TextField
+                                        value={user}
+                                        label="Username"
+                                        variant="standard"
+                                        onChange={handleUserChange}/>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={9}>
                                 <FormControl fullWidth>
-                                    <TextField value={message} label="Here comes your message: " variant="standard"/>
+                                    <TextField
+                                        value={message}
+                                        label="Here comes your message: "
+                                        variant="standard"
+                                        onChange={handleMessageChange}
+                                    />
                                 </FormControl>
                             </Grid>
                             <Grid item xs={1}>
