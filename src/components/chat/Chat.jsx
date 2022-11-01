@@ -3,7 +3,7 @@ import {
     Container,
     Divider,
     FormControl,
-    Grid,
+    Grid, IconButton,
     List,
     ListItem,
     ListItemText,
@@ -13,6 +13,7 @@ import {
 import {Fragment, useState} from "react";
 import {ChatMessagesDto} from "../../model/ChatMessagesDto";
 import './chat.css';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function Chat(){
 
@@ -53,7 +54,13 @@ export default function Chat(){
                                     <TextField value={message} label="Here comes your message: " variant="standard"/>
                                 </FormControl>
                             </Grid>
-                            <Grid item></Grid>
+                            <Grid item>
+                                <IconButton
+                                    aria-label="send"
+                                    color="primary">
+                                    <SendIcon />
+                                </IconButton>
+                            </Grid>
                         </Grid>
                     </Box>
 
