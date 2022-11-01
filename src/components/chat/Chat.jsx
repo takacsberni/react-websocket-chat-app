@@ -1,4 +1,15 @@
-import {Box, Container, Divider, Grid, List, ListItem, ListItemText, Paper, Typography} from "@mui/material";
+import {
+    Box,
+    Container,
+    Divider,
+    FormControl,
+    Grid,
+    List,
+    ListItem,
+    ListItemText,
+    Paper, TextField,
+    Typography
+} from "@mui/material";
 import {Fragment, useState} from "react";
 import {ChatMessagesDto} from "../../model/ChatMessagesDto";
 import './chat.css';
@@ -13,6 +24,7 @@ export default function Chat(){
             <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`} />
         </ListItem>
     );
+    const [user, SetUser] = useState("");
 
     return (
         <Fragment>
@@ -30,7 +42,11 @@ export default function Chat(){
                                     {listChatMessages}
                                 </List>
                             </Grid>
-                            <Grid item></Grid>
+                            <Grid item>
+                                <FormControl fullWidth>
+                                    <TextField value={user} label="Username" variant="standard"/>
+                                </FormControl>
+                            </Grid>
                             <Grid item></Grid>
                             <Grid item></Grid>
                         </Grid>
