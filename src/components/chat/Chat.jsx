@@ -1,6 +1,7 @@
 import {Box, Container, Divider, Grid, List, ListItem, ListItemText, Paper, Typography} from "@mui/material";
 import {Fragment, useState} from "react";
 import {ChatMessagesDto} from "../../model/ChatMessagesDto";
+import './chat.css';
 
 export default function Chat(){
 
@@ -24,8 +25,8 @@ export default function Chat(){
                         </Typography>
                         <Divider />
                         <Grid container spacing={4} alignItems="center">
-                            <Grid item>
-                                <List>
+                            <Grid item id="chat-window" xs={12}>
+                                <List id="chat-window-messages">
                                     {listChatMessages}
                                 </List>
                             </Grid>
