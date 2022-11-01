@@ -1,9 +1,12 @@
 import {Box, Container, Divider, Grid, List, ListItem, ListItemText, Paper, Typography} from "@mui/material";
 import {Fragment, useState} from "react";
+import {ChatMessagesDto} from "../../model/ChatMessagesDto";
 
 export default function Chat(){
 
-    const [chatMessages, setChatMessages] = useState([]);
+    const [chatMessages, setChatMessages] = useState([
+        new ChatMessagesDto('JohnDoe', 'Hi there!')
+    ]);
     const listChatMessages = chatMessages.map( (chatMessageDto, index) =>
         <ListItem key={index}>
             <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`} />
