@@ -1,11 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import Bar from "./components/bar/Bar";
+import Chat from "./components/chat/Chat"
+import {Fragment} from "react";
 
 function App() {
   return (
-    <Bar />
-  );
+      <Fragment>
+        <Bar />
+        <Chat />
+      </Fragment>
+    );
 }
 
 export default App;
