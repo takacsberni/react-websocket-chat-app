@@ -34,6 +34,12 @@ export default function Chat(){
         setMessage(e.target.value);
     }
 
+    const sendMessage = ()=> {
+        if (user !== "" && message !== ""){
+            console.log(`Button works, user, message: ${user}, ${message}`);
+        }
+    }
+
     return (
         <Fragment>
             <Container>
@@ -72,7 +78,9 @@ export default function Chat(){
                             <Grid item xs={1}>
                                 <IconButton
                                     aria-label="send"
-                                    color="primary">
+                                    color="primary"
+                                    onClick={sendMessage}
+                                >
                                     <SendIcon />
                                 </IconButton>
                             </Grid>
