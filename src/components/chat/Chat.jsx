@@ -25,6 +25,7 @@ export default function Chat(){
         </ListItem>
     );
     const [user, SetUser] = useState("");
+    const [message, setMessage] = useState("");
 
     return (
         <Fragment>
@@ -47,7 +48,11 @@ export default function Chat(){
                                     <TextField value={user} label="Username" variant="standard"/>
                                 </FormControl>
                             </Grid>
-                            <Grid item></Grid>
+                            <Grid item>
+                                <FormControl fullWidth>
+                                    <TextField value={message} label="Here comes your message: " variant="standard"/>
+                                </FormControl>
+                            </Grid>
                             <Grid item></Grid>
                         </Grid>
                     </Box>
