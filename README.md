@@ -1,6 +1,6 @@
 # React chat app using websockets
 A guided project to learn about Websockets. 
-Frontend made with React, and websocket was implemented using Node.JS. 
+Frontend made with React and Material UI, and websocket was implemented using Node.JS. 
 
 ## Available Scripts
 
