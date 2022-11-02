@@ -17,6 +17,8 @@ import SendIcon from '@mui/icons-material/Send';
 
 export default function Chat(){
 
+    const ENTER_KEY_CODE = 13; //ASCII code for enter;
+
     const webSocket = useRef(null);
 
     const [chatMessages, setChatMessages] = useState([]);
@@ -60,6 +62,12 @@ export default function Chat(){
     }
     const handleMessageChange = (e) => {
         setMessage(e.target.value);
+    }
+
+    const handleEnterKey = (event) =>{
+        if (event.keyCode === ENTER_KEY_CODE) {
+            sendMessage();
+        }
     }
 
     const sendMessage = ()=> {
@@ -108,6 +116,7 @@ export default function Chat(){
                                         label="Here comes your message: "
                                         variant="standard"
                                         onChange={handleMessageChange}
+                                        onKeyDown={handleEnterKey}
                                     />
                                 </FormControl>
                             </Grid>
