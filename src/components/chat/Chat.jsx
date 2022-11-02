@@ -10,16 +10,16 @@ import {
     Paper, TextField,
     Typography
 } from "@mui/material";
-import {Fragment, useState} from "react";
+import {Fragment, useEffect, useRef, useState} from "react";
 import {ChatMessagesDto} from "../../model/ChatMessagesDto";
 import './chat.css';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function Chat(){
 
-    const [chatMessages, setChatMessages] = useState([
-        new ChatMessagesDto('JohnDoe', 'Hi there!')
-    ]);
+    const webSocket = useRef(null);
+
+    const [chatMessages, setChatMessages] = useState([]);
     const listChatMessages = chatMessages.map( (chatMessageDto, index) =>
         <ListItem key={index}>
             <ListItemText primary={`${chatMessageDto.user}: ${chatMessageDto.message}`} />
@@ -27,6 +27,34 @@ export default function Chat(){
     );
     const [user, setUser] = useState("");
     const [message, setMessage] = useState("");
+
+    useEffect( () => {
+        console.log("Opening websocket");
+        webSocket.current = new WebSocket('ws://localhost:8080');
+        webSocket.current.onopen = (event) => {
+            console.log('Fronted message: Opened event: ', event);
+        }
+        webSocket.current.onclose = (event) => {
+            console.log('Fronted message: Closed event: ', event);
+        }
+        return () => {
+            if (webSocket.current.readyState === 1) { // <-- This is important
+                webSocket.current.close();
+                console.log("Closing websocket");
+            }
+        }
+    }, []);
+
+    useEffect( () => {
+        webSocket.current.onmessage = (event) => {
+            const chatMessageDto = JSON.parse(event.data);
+            setChatMessages([...chatMessages, {
+                user: chatMessageDto.user,
+                message: chatMessageDto.message
+            }]);
+        }
+    }, [chatMessages]);
+
     const handleUserChange = (e) => {
         setUser(e.target.value);
     }
@@ -37,6 +65,14 @@ export default function Chat(){
     const sendMessage = ()=> {
         if (user !== "" && message !== ""){
             console.log(`Button works, user, message: ${user}, ${message}`);
+            try {
+                webSocket.current.send(
+                    JSON.stringify(new ChatMessagesDto(user, message))
+                );
+            } catch (err){
+                console.log(err.message);
+            }
+            setMessage('');
         }
     }
 
