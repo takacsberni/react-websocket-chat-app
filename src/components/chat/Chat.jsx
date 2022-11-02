@@ -18,6 +18,7 @@ import SendIcon from '@mui/icons-material/Send';
 export default function Chat(){
 
     const ENTER_KEY_CODE = 13; //ASCII code for enter;
+    const scrollDownMessagesRef = useRef(null);
 
     const webSocket = useRef(null);
 
@@ -54,6 +55,11 @@ export default function Chat(){
                 user: chatMessageDto.user,
                 message: chatMessageDto.message
             }]);
+            if (scrollDownMessagesRef.current){
+                scrollDownMessagesRef.current.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         }
     }, [chatMessages]);
 
@@ -98,6 +104,7 @@ export default function Chat(){
                             <Grid item id="chat-window" xs={12}>
                                 <List id="chat-window-messages">
                                     {listChatMessages}
+                                    <ListItem ref={scrollDownMessagesRef} />
                                 </List>
                             </Grid>
                             <Grid item xs={2}>
